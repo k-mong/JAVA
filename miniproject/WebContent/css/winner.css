@@ -1,0 +1,80 @@
+@charset "UTF-8";
+*{
+    margin: 0 auto;
+}
+
+.wrap{
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    /* 화면상에 height를 꽉차게 해줌 기준은 화면상 */
+    background-image: url(https://templatepocket.com/wp-content/uploads/2021/07/Sepion-CSS-Background-Animation.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.background{
+    width: 60%;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    /* 가로정렬했을 때 센터에 넣겠다. */
+    align-items: center;
+    /* 세로정렬 센터 */
+    padding-bottom: 4rem;
+}
+
+.title{
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin: 2rem;
+    color: #404040;
+    text-shadow: 6px 2px 2px gray;
+}
+
+.imgbox{
+
+   	/* justify-content: space-between; */
+    /* 일정한 간격으로 갈라진다(가로속성) */
+    display: flex;
+    width: 60%;
+    position: relative;
+}
+
+.imgwrap{
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    /* 세로기준 중앙 정렬(90도로 돌아간거 기준) */
+    flex-direction: column;
+    /* 90도 로 돌려준다 */
+    align-items: center;
+    background-color: white;
+    padding-bottom:3.5rem;
+    border-radius: 1.5rem;
+    margin: 0 1rem;
+    box-shadow: 10px 8px 8px gray;
+    border: 2px solid #000;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.imgwrap:hover{
+	transform: scale(1.07);
+}
+
+
+.name{
+    /* justify-content: center;
+    display: flex; */
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 1rem 0;
+
+}
+
+.imgwrap img{
+    width: 100%;
+    height: 35rem;
+}
+
