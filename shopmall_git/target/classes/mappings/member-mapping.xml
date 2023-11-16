@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="MemberMapper">
+	<!--  회원 정보 조회 -->
+	<select id="getMember" resultType="member">
+		SELECT * FROM member WHERE id=#{id}
+	</select>
+	
+	<!-- 회원 존재여부 확인 -->
+	<select id="confirmID" resultType="String">
+		SELECT pwd FROM member WHERE id=#{id}
+	</select>
+	
+	<!-- 회원 등록 -->
+	<insert id="insertMember">
+		INSERT INTO member(id, pwd, name, email, zip_num, address, phone)
+		VALUES (#{id}, #{pwd}, #{name}, #{email}, #{zip_num}, #{address}, #{phone})
+	</insert>
+	
+	<!-- 동 이름으로 주소 찾기 -->
+	<select id="selectAddressByDong" resultType="address">
+		SELECT * FROM address WHERE dong like '%'||#{dong}||'%'
+	</select>
+	
+	<!-- 아이디 와 이메일로 아이디 찾기 -->
+	<select id="slelctIdByNameAndEmail" resultType="String">
+		SELECT id FROM member 
+		WHERE NAME=#{name} and EMAIL=#{email}
+	</select>
+	
+	<!-- 아이디 이름 이메일로 비밀번호 찾기 -->
+	<select id="slelctPwdByIdNameEmail" resultType="String">
+		SELECT pwd FROM member
+		WHERE id=#{id} and name=#{name} and email=#{email}
+	</select>
+	
+	<!-- id를 조건으로 비밀번호 수정 -->
+	<update id="changePwd">
+		UPDATE member SET pwd=#{pwd} WHERE id=#{id} 
+	</update>
+	
+	<!-- 회원리스트 조회 -->
+	<select id="listMember" resultType="member">
+		SELECT * FROM member
+		WHERE name LIKE '%'||#{name}||'%'
+		ORDER BY name DESC
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</mapper>
