@@ -13,6 +13,7 @@ import java.util.List;
 @AllArgsConstructor // 모든 필드를 파라미터로 받는 생성자 만들어준다
 @NoArgsConstructor  // 기본 생성자 만들어준다.
 @Getter
+@Entity
 public class Member {
 
     @Id
@@ -39,7 +40,6 @@ public class Member {
     // fetch = FetchType.LAZY = 연관된 엔티티에 접근할 때 데이터베이스에서 가져온다
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "member", fetch = FetchType.LAZY)
     private List<Board> boards = new ArrayList<>();
-
 
 }
 

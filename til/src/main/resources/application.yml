@@ -11,6 +11,12 @@ spring:
     username: root
     password: 12345678
 
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.type: trace
 
+jwt:
+  secret: c12AsjfiojaspfASFIHAFWjpfqjwpijsafASIFHASPF124DEgpoihi
 
 

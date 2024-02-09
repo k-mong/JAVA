@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 public class Board {
 
     @Id
@@ -18,7 +19,6 @@ public class Board {
 
     @Column(length = 20, nullable = false)    // 글자 수 20 글자
     private String title;
-
 
     @Lob
     @Column(nullable = false)
