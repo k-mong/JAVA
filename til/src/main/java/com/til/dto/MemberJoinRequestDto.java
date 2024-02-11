@@ -14,15 +14,19 @@ public class MemberJoinRequestDto {
     private String password;
     private String name;
     private String phone;
-    private Role roel;
+    private Role role;
 
-    public Member toEntity(String encode) {
+    public void bencryptPassword(String BCryptpassword) {
+        this.password = BCryptpassword;
+    }
+
+    public Member toEntity() {
         return Member.builder()
                 .email(email)
                 .password(password)
                 .name(name)
                 .phone(phone)
-                .role(roel)
+                .role(role)
                 .build();
     }
 }
