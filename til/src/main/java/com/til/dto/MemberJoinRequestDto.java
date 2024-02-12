@@ -16,7 +16,7 @@ public class MemberJoinRequestDto {
     private String phone;
     private Role role;
 
-    public void bencryptPassword(String BCryptpassword) {
+    public void bcryptPassword(String BCryptpassword) {
         this.password = BCryptpassword;
     }
 
