@@ -1,29 +1,31 @@
 package com.til.service;
 
 import com.til.dto.MemberJoinRequestDto;
+import com.til.dto.MemberLoginDto;
 import com.til.entity.Member;
+import com.til.entity.Role;
 import com.til.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.core.userdetails.memory.UserAttribute;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class MemberService implements UserDetailsService {
+public class MemberService {
 
     private final MemberRepository memberRepository;
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     private final PasswordEncoder passwordEncoder;
 
@@ -53,19 +55,16 @@ public class MemberService implements UserDetailsService {
         return memberRepository.existsByEmail(email);
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+    public String login(MemberLoginDto memberLoginDto) {
+        Optional<Member> member = memberRepository.findByEmail(memberLoginDto.getEmail());
+        if (!member.isPresent()) {
+            throw new RuntimeException("존재하지 않는 아이디 입니다.");
+        } else if (!passwordEncoder.matches(memberLoginDto.getPassword(), member.get().getPassword())) {
+            throw new RuntimeException("비밀번호가 틀렸습니다.");
+        }
 
-        return null;
+        return "로그인 완료";
     }
 
-//    @Override
-//    public void join(MemberJoinRequestDto memberJoinRequestDto) {
-//        if(memberRepository.findByEmail(memberJoinRequestDto.getEmail()).isPresent()){
-//            throw new RuntimeException("이미 존재하는 회원 입니다.");
-//        }
-//        memberJoinRequestDto.bcryptPassword(bCryptPasswordEncoder.encode(memberJoinRequestDto.getPassword()));
-//        Member member = memberJoinRequestDto.toEntity();
-//        memberRepository.save(member);
-//    }
+
 }

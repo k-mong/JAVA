@@ -27,9 +27,9 @@ public class Board {
     // N:1 관계(null 값 허용안됨, 연관된 엔티티에 접근할 때 데이터베이스에서 가져온다)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
-    private com.til.entity.Member member;
+    private Member member;
 
-    public void setMember(com.til.entity.Member member) {
+    public void setMember(Member member) {
         this.member = member;
         member.getBoards().add(this);
     }
