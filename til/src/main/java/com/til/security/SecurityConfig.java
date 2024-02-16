@@ -1,4 +1,4 @@
-package com.til.config;
+package com.til.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
