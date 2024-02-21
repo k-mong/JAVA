@@ -1,5 +1,6 @@
 package com.til.api;
 
+import com.til.dto.BoardResponseDto;
 import com.til.dto.InsertBoardRequestDto;
 import com.til.dto.UploadImageDto;
 import com.til.entity.Board;
@@ -11,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
@@ -27,7 +29,10 @@ public class BoardApiController {
     }
 
     @GetMapping("/list")
-    public List<Board> boardList () {
-        return boardService.boardList();
+    public List<BoardResponseDto> boardList () {
+        List<Board> boards = boardService.boardList();
+        return boards.stream()
+                .map(BoardResponseDto::new)
+                .collect(Collectors.toList());
     }
 }
