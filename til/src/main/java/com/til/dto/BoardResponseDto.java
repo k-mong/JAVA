@@ -22,7 +22,6 @@ public class BoardResponseDto {
     private String email;
     private List<String> imageUrl;
 
-    @Builder
     public BoardResponseDto(Board board) {
         this.id = board.getId();
         this.title = board.getTitle();

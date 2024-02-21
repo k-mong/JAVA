@@ -14,7 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -39,9 +38,10 @@ public class BoardService {
             for(MultipartFile file : uploadImageDto.getFiles()) {
                 // MultipartFile file 안에 인자값으로 들어온 이미지 파일을 하나씩 너어줘
                 UUID uuid = UUID.randomUUID();
+                // 서버 내부에서 관리하는 파일명은 유일한 이름을 생성하는 UUID를 사용해서 충돌하지 않도록 한다.
                 // 각 이미지에대한 식별값 생성
                 String imageFileName = uuid + "_" + file.getOriginalFilename();
-                // 아마자파일 이름 규칙지정
+                // 이미지파일 이름 규칙지정
 
                 File destinationFile = new File(uploadFolder + imageFileName);
                 try {

@@ -22,7 +22,6 @@ public class MemberApiController {
 
     @PostMapping("/join")
     public ResponseEntity<String> join(@RequestBody MemberJoinRequestDto memberJoinRequestDto) {
-        System.out.println("들어옴");
         String result = memberService.join(memberJoinRequestDto);
         return ResponseEntity.ok(result);
     }
